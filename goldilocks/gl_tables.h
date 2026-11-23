@@ -1,4 +1,4 @@
-
+// gerado pelo gen_tables.c, nao editar na mao
 #define GL_N 8
 
 static const uint64_t GL_MDS[12][12] = {

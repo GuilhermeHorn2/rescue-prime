@@ -1,0 +1,17 @@
+# binarios gerados pelo make
+src/fp
+src/params
+src/test_rescue
+src/test_rescue_asan
+goldilocks/gen_tables
+goldilocks/test_gl
+goldilocks/test_gl_asan
+goldilocks/test_gl_var
+bench/prof
+bench/custo
+bench/sha3
+*.o
+
+# python
+__pycache__/
+*.pyc
