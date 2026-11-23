@@ -1,5 +1,5 @@
 # Rescue-Prime em C
-
+#
 Implementação em C da função de hash Rescue-Prime ([ePrint 2020/1143](https://eprint.iacr.org/2020/1143)) para primos de até 64 bits, com geração completa dos parâmetros a partir de `(p, m, c, s)`, e uma versão especializada para o corpo Goldilocks (`p = 2^64 - 2^32 + 1`, `m = 12`, `c = 4`).
 
 O relatório final está em [`relatorio/relatorio.pdf`](relatorio/relatorio.pdf).
