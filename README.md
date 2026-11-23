@@ -50,14 +50,4 @@ git clone https://github.com/KULeuven-COSIC/Marvellous ref/marvellous
 make vetores-sage   # ou: make vetores-py
 ```
 
-## Resultados
 
-Intel Core i5-1035G1, GCC 14.3 `-O2`, contadores de hardware (detalhes na Seção 7 do relatório):
-
-| | Genérica | Goldilocks |
-|---|---|---|
-| Multiplicações por permutação | 11 808 | 9 600 |
-| Ciclos por permutação | 306 mil | 154 mil |
-| Ciclos por byte (mensagem de 8 KiB) | 4 803 | 2 427 |
-
-Na mesma máquina, o SHA3-256 do OpenSSL faz 9,3 ciclos por byte.
