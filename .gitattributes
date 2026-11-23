@@ -1,1 +1,3 @@
 *.h linguist-language=C
+*.sage linguist-detectable=false
+*.py linguist-detectable=false
