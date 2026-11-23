@@ -12,8 +12,7 @@ O relatório final está em [`relatorio/relatorio.pdf`](relatorio/relatorio.pdf)
 | `goldilocks/` | Versão especializada (`gl.c`, `gl.h`), gerador das tabelas (`gen_tables.c`) e testes contra a versão genérica e o Sage (`test_gl.c`) |
 | `bench/` | Medidas: contagem de multiplicações (`custo.c`), perfil genérico x Goldilocks (`prof.c`), ablação (alvo `ablacao` do `Makefile`) e comparação com o SHA3-256 (`sha3.c`). `perfctr.h` lê os contadores de hardware |
 | `ref/` | Scripts que exportam os vetores de teste do código de referência (`gen_vectors.sage`), um porte em Python (`ref.py`, `gen_vectors.py`) e os vetores gerados |
-| `relatorio/` | Fonte LaTeX do relatório (template Springer LNCS) |
-| `apresentacao/` | Slides em Beamer (`rescue_prime_slides/main.tex`) e o PDF compilado |
+
 
 ## Requisitos
 
