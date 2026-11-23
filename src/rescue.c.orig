@@ -1,0 +1,57 @@
+#include <string.h>
+#include "rescue.h"
+
+static void sbox(const rp_params *P, fe_t st[], uint64_t e){
+    for (uint64_t j = 0; j < P->m; j++){
+        st[j] = fp_pow(st[j], e, P->p);
+    }
+}
+
+static void mds_mul(const rp_params *P, fe_t st[]){
+
+    fe_t t[RP_MAX_M];
+    for (uint64_t i = 0; i < P->m; i++){
+        fe_t acc = 0;
+        for (uint64_t j = 0; j < P->m; j++){
+            acc = fp_add(acc, fp_mul(P->mds[i* P->m + j], st[j], P->p), P->p);
+        }
+        t[i] = acc;
+    }
+    memcpy(st, t, sizeof(fe_t)*P->p);
+}
+
+static void add_constants(const rp_params *P, fe_t st[], const fe_t *k){
+
+    for(uint64_t j = 0; j < P->m; j++){
+        st[j] = fp_add(st[j], k[j], P->p);
+    }
+}
+
+void rp_permutation(const rp_params *P, fe_t st[]){
+
+    uint64_t m = P->m;
+    for(uint64_t i = 0; i < P->N; i++){
+        sbox(P, st, P->alpha);
+        mds_mul(P, st);
+        add_constants(P, st, P->rc + 2*m*i);
+        sbox(P, st, P->alphainv);
+        mds_mul(P, st);
+        add_constants(P, st, P->rc + 2*m*i + m);
+    }
+}
+
+void rp_hash(const rp_params *P, const fe_t *in, size_t n, fe_t *out){
+    fe_t st[RP_MAX_M] = {0};
+    size_t r = P->rate;
+    size_t total = ((n+1+r-1)/r)*r;
+
+    for (size_t k = 0; k < total; k+=r){
+        for (size_t i = 0; i < r; i++){
+            size_t idx = k+i;
+            fe_t x = idx < n ? in[idx] : (idx == n ? 1 : 0);
+            st[i] = fp_add(st[i], x, P->p);
+        }
+        rp_permutation(P, st);
+    }
+    memcpy(out, st, sizeof(fe_t)*r);
+}
